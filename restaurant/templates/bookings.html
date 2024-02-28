@@ -9,6 +9,7 @@
         {% for booking in bookings.bookings %}
         <p id="bookings">
           <span> {{ booking.first_name }} </span>
+          <span> {{ booking.no_of_guests }} </span>
           <span> {{ booking.reservation_date }} </span>
           <span> {{ booking.reservation_slot }} </span>
         </p>

@@ -1,0 +1,14 @@
+{% load static %}
+<header>
+  <img src="{% static 'img/logo2.png' %}" />
+</header>
+<nav>
+  <ul>
+    <li><a href="/sic/">Home</a></li>
+    <li><a href="/sic/results/">Results</a></li>
+    <!-- Dynamically generate links for each model -->
+    {% for model in models %}
+      <li><a href="/SIC/{{ model }}">{{ model }}</a></li>
+    {% endfor %}
+  </ul>
+</nav>

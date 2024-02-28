@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<iframe title="lithiumamericas" width="2280" height="1082.5" src="https://app.powerbi.com/reportEmbed?reportId=a635e9d3-8099-4456-81b3-740038b2c2f1&autoAuth=true&ctid=0199039e-0617-4c00-993f-aa9318be9608" frameborder="0" allowFullScreen="true"></iframe>
+
+
+  <section>
+    <article>
+      <h2>Environmental</h2>
+      <img src="{% static 'img/environmental.jpg' %}">
+      <p>
+        environmental data capture and reporting to ensure complaince.
+      </p>
+      <p>
+        <a href="{% url 'menu' %}">See our new menu</a>
+      </p>
+    </article>
+    <article>
+      <h2>Process</h2>
+      <img src="{% static 'img/processplant.jpg' %}">
+      <p>
+        process data capture to optimize and improve recovery.
+      </p>
+      <p>
+        <!-- Add code here for book  -->
+      </p>
+    </article>
+    <article>
+      <h2>Safety</h2>
+      <img src="{% static 'img/topviewmine.jpg' %}">
+      <p>
+        complying safety info to protect our greatest assets, our miners. 
+      </p>
+    </article>
+  </section>
+{% endblock %}

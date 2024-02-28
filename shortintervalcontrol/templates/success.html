@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% block content %}
+<section>
+    <article id="hero">
+      <h1 class="heading_shadow">Short Interval Control</h1>
+      <p>
+        Success! Data Captured.
+        
+      <ul>
+        {% for field_data in fields_data %}
+        
+        <li> 
+          <span class="checkmark">&#10004;</span>{{ field_data.verbose_name }}: {{ field_data.value }}
+        </li>
+        {% endfor %}
+      </ul>
+      </p>
+      <a href="/SIC/results" class="cta"> See Results Here </a>
+    </article>
+  </section>
+  <section>
+    <article>
+      <h2>Environmental</h2>
+      <img src="{% static 'img/environmental.jpg' %}">
+      <p>
+        environmental data capture and reporting to ensure complaince.
+      </p>
+      <p>
+        <a href="/SIC/results">See Results</a>
+      </p>
+    </article>
+    <article>
+      <h2>Process</h2>
+      <img src="{% static 'img/processplant.jpg' %}">
+      <p>
+        process data capture to optimize and improve recovery.
+      </p>
+      <p>
+        <!-- Add code here for book  -->
+      </p>
+    </article>
+    <article>
+      <h2>Safety</h2>
+      <img src="{% static 'img/topviewmine.jpg' %}">
+      <p>
+        complying safety info to protect our greatest assets, our miners. 
+      </p>
+      
+    </article>
+  </section>
+{% endblock %}

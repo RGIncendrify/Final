@@ -1,0 +1,19 @@
+<!-- templates/shortintervalcontrol/generic_model_detail.html -->
+{% extends 'base.html' %}
+{% block content %}
+<section>
+  <article>
+    <h1>{{ model_name }} Details</h1>
+    <div>List of instances:</div>
+    {% for instance in instances %}
+      <p>{{ instance }}</p>  <!-- Customize this according to your model's fields -->
+    {% endfor %}
+    <hr>
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Submit</button>
+    </form>
+  </article>
+</section>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% load static %}
+<header>
+  <img src="{% static 'img/logo2.png' %}" />
+</header>
+<nav>
+  <ul>
+    <li><a href="{% url 'Mine' %}">Mine</a></li>
+    <li><a href="{% url 'Beneficiation' %}">Beneficiation</a></li>
+    <li><a href="{% url 'ProcessPlant' %}">Process Plant</a></li>
+    <li><a href="{% url 'WaterSupply' %}">Water Supply</a></li>
+    <li><a href="{% url 'SulfuricAcidPlant' %}">Sulfuric Acid Plant</a></li>
+  </ul>
+</nav>

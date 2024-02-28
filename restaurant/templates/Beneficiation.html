@@ -1,0 +1,127 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<section>
+  <article>
+    <h1>Short Interval Control</h1>
+    <!--Begin row-->
+    <div class="row">
+      <!--Begin col-->
+      <div class="column">
+        {% csrf_token %}
+        <form method="POST" id="form">
+          
+          <p>
+            <label for="Tons">Scrubber TPH</label>
+            <input
+              type="number"
+              placeholder="Enter Tons"
+              maxlength="200"
+              required=""
+              id="Tons"
+            />
+          </p>
+          From_MineTPH = models.PositiveIntegerField()
+          ScrubberTPH = models.PositiveIntegerField()
+          ThickenerTPH = models.PositiveIntegerField()
+          CoarseGangueM3PH = models.PositiveIntegerField()
+          RecycleWaterM3PH = models.PositiveIntegerField()
+          Notes = models.CharField(max_length=200)
+      
+
+          <p>
+            <label for="Grade">Recycle Water GPM</label>
+            <input
+              type="number"
+              placeholder="Oz/Ton"
+              maxlength="200"
+              required=""
+              id="Grade"
+            />
+          </p>   
+
+          <p>
+            <label for="Manual_Tons">Coarse Gangue GPM</label>
+            <input
+              type="number"
+              placeholder="Tons"
+              min="0"  
+              max="200"
+              required
+              id="Manual_Tons"
+            />
+          </p>
+
+          <p>
+            <label for="Notes">Shift Notes</label>
+            <input
+              type="text"
+              placeholder="Noticed x, Observed y, Resolved z, etc."
+              required
+              id="Notes"
+            />
+          </p>
+          
+          
+          <button type="button" id="button">Log Entries</button>
+        </form>
+      </div>
+      <!--End col-->
+  
+      <!--Begin col-->
+      <div class="column">
+        <img src="{% static 'img/process.jpg' %}">
+        <h2>Entries for today <span id="today"></span></h2>
+        <div id="mine">
+          <iframe title="lithiumamericas" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=a635e9d3-8099-4456-81b3-740038b2c2f1&autoAuth=true&ctid=0199039e-0617-4c00-993f-aa9318be9608" frameborder="0" allowFullScreen="true"></iframe>
+        </div>
+      </div>
+      <!--End col-->
+    </div>
+    <!--End row-->
+  </article>
+</section>
+<script>
+document.getElementById("button").addEventListener("click", function (e) {
+  const formdata = {
+    Tons: document.getElementById("Tons").value,
+    Grade: document.getElementById("Grade").value,
+    Manual_Tons: document.getElementById("Manual_Tons").value,
+    Notes: document.getElementById("Notes").value
+  };
+
+  fetch("{% url 'Mine' %}", {
+    method: "post",
+    body: JSON.stringify(formdata),
+  })
+    .then((r) => r.text())
+    .then((data) => {
+      // handle response as needed
+    });
+});
+</script>
+<script>
+  // Call the function when the page loads
+  window.onload = function() {
+      getMine();
+  };
+
+  // Define the function to fetch mine data
+  function getMine() {
+      fetch("{% url 'get_mine' %}")
+      .then(response => response.json())
+      .then(data => {
+          let mineEntriesHTML = '';
+          data.forEach(entry => {
+              mineEntriesHTML += `<p>Tons: ${entry.tons}, Grade: ${entry.grade}, Manual Tons: ${entry.manual_tons}, Notes: ${entry.notes}</p>`;
+          });
+          document.getElementById('mine_entries').innerHTML = mineEntriesHTML;
+      })
+      .catch(error => console.error('Error:', error));
+  }
+</script>
+
+
+
+
+
+
+{% endblock %}
